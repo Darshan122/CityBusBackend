@@ -12,6 +12,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import busRoute from "./routes/bus.js";
+import userRoute from "./routes/user.js";
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use("/bus", busRoute);
+app.use("/user", userRoute);
 
 // routes
 
