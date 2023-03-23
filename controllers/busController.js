@@ -1,4 +1,3 @@
-// const Bus = require("../models/Bus");
 
 import Bus from "../models/Bus.js";
 
@@ -17,7 +16,6 @@ export const createBus = async (req, res) => {
     });
   }
 };
-
 
 export const updateBus = async (req, res) => {
 
@@ -143,7 +141,6 @@ export const getFeaturedBus = async (req, res) => {
     });
   }
 }
-
 
 // get bus counts 
 export const getBusCount = async (req, res) => {
