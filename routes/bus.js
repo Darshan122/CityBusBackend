@@ -1,15 +1,14 @@
 import express from 'express';
-import { verifyAdmin } from '../utils/verifytoken.js';
 
 import { createBus, updateBus, deleteBus, getsingleBus, getAllBus, getBusBySearch, getFeaturedBus, getBusCount } from "./../controllers/busController.js";
 
 const router = express.Router();
 // create new bus
-router.post("/", verifyAdmin, createBus);
+router.post("/", createBus);
 // update bus
-router.put("/:id", verifyAdmin, updateBus);
+router.put("/:id", updateBus);
 // delete bus
-router.delete("/:id", verifyAdmin, deleteBus);
+router.delete("/:id", deleteBus);
 // get single bus
 router.get("/:id", getsingleBus);
 // get all bus
