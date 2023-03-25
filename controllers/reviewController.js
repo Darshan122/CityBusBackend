@@ -4,16 +4,13 @@ import Review from  '../models/Review.js'
 export const createReview = async (req, res) => {
 
     const busId = req.params.busId
-    const newReview = new Review({...req.body})
-
+    const newReview = new Review({ ...req.body })
+    
     try {
         const savedReview = await newReview.save()
-
         // after creating new review now update the reviews array of the bus
-        await Bus.findByIdandUpdate(busId,{
-            $push: {
-                reviews: savedReview._id
-            }
+        await Bus.findByIdAndUpdate(busId,{
+            $push: {reviews: savedReview._id}
         })
 
         res.status(200).json({success: true, message:"Reviews submitted", data:savedReview})

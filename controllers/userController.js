@@ -1,4 +1,3 @@
-// const User = require("../models/User");
 
 import User from "../models/User.js";
 
@@ -17,7 +16,6 @@ export const createUser = async (req, res) => {
     });
   }
 };
-
 
 export const updateUser = async (req, res) => {
 
@@ -139,7 +137,6 @@ export const getFeaturedUser = async (req, res) => {
     });
   }
 }
-
 
 // get User counts 
 export const getUserCount = async (req, res) => {

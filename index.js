@@ -1,11 +1,3 @@
-// const express = require("express");
-// const dotenv = require("dotenv");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-// const cookieParser = require("cookie-parser");
-
-// const busRoute = require("./routes/bus.js");
-
 import express  from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -13,11 +5,17 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import busRoute from "./routes/bus.js";
 import userRoute from "./routes/user.js";
+import authRoute from "./routes/auth.js";
+import reviewRoute from "./routes/reviews.js";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8000;
+const corsOptions = {
+  origin:true,
+  credentials:true,
+}
 
 // database connection
 mongoose.set("strictQuery", false);
@@ -37,10 +35,12 @@ app.get("/", (req, res) => {
 
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use("/bus", busRoute);
-app.use("/user", userRoute);
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/bus", busRoute);
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/review", reviewRoute);
 
 // routes
 

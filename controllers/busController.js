@@ -1,4 +1,3 @@
-// const Bus = require("../models/Bus");
 
 import Bus from "../models/Bus.js";
 
@@ -17,7 +16,6 @@ export const createBus = async (req, res) => {
     });
   }
 };
-
 
 export const updateBus = async (req, res) => {
 
@@ -67,8 +65,9 @@ export const getsingleBus = async (req, res) => {
   const id = req.params.id
 
   try {
-    const bus = await Bus.findById(id)
-
+    const bus = await Bus.findById(id).populate("reviews")
+    console.log(bus);
+   
     res
       .status(200)
       .json({ success: true, message: "Successfully found", data: bus});
@@ -86,10 +85,9 @@ export const getAllBus = async (req, res) => {
   // for pagination
   const page = parseInt(req.query.page)
   // console.log(page);
-
   try {
-    const bus = await Bus.find({}).skip(page * 8).limit(8)
-
+    const bus = await Bus.find({}).populate("reviews").skip(page * 8).limit(8)
+    console.log(bus);
     res
       .status(200)
       .json({ success: true, count:bus.length, message: "Successfully", data: bus});
@@ -130,7 +128,7 @@ export const getBusBySearch = async (req, res) => {
 export const getFeaturedBus = async (req, res) => {
 
   try {
-    const bus = await Bus.find({featured:true}).limit(8)
+    const bus = await Bus.find({featured:true}).populate("reviews").limit(8)
 
     res
       .status(200)
@@ -143,7 +141,6 @@ export const getFeaturedBus = async (req, res) => {
     });
   }
 }
-
 
 // get bus counts 
 export const getBusCount = async (req, res) => {
