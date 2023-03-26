@@ -34,10 +34,8 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     
     const email = req.body.email;
-    console.log(email);
     try {
         const user = await User.findOne({email});
-        console.log(user);
         // if user not exist
         if (!user) {
             return res.status(404).json({success: false, message: 'User not found'});
