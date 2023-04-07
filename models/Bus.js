@@ -40,7 +40,7 @@ const busSchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Reviews",
+        ref: "Review",
       },
     ],
 
